@@ -1,0 +1,31 @@
+@import "~bootstrap";
+
+::ng-deep body,
+::ng-deep html {
+  height: 100%;
+  margin: 0;
+}
+
+header {
+
+  background-color: #0D0D0D;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: bold;
+  width: max;
+  div {
+    h1 {
+      color:#017a01;
+      padding-top: 1%;
+      padding-left: 1%;
+      padding-bottom: 1%;
+    }
+  }
+  ul {
+    padding-left: 1%;
+    li{
+      color:#F0DCF2;
+    }
+  }
+}
+
+

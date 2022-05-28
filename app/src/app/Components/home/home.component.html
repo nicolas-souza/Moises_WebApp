@@ -1,0 +1,96 @@
+
+
+<div clas="container-moises">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-moises" (click)="collapseReserva = !collapseReserva"
+      [attr.aria-expanded]="!collapseReserva" aria-controls="novaReservaCollapse">Reservar</button>
+    </div>
+    <div class="col" *ngIf="(!collapseReserva)">
+      <div class="card">
+        <h4 class="card-header">Nova reserva</h4>
+        <br>
+
+        <div class="card-body">
+
+          <form #novaReserva = "ngForm" (ngSubmit)="registrarReserva(novaReserva)">
+            <div class="row">
+              <div class="form-group">
+                <label>Título da Reserva</label>
+                <input type="text" class="form-control" name="tituloReserva" placeholder="Nome que aparecerá na tela de reservas" ngModel required>
+              </div>
+            </div>
+            <br>
+
+            <div class="form-group">
+              <div class="row">
+                <label>Horário da Reserva</label>
+                <div class="col">
+                  <input type="datetime-local" class="form-control" name="inicioReserva" placeholder="Horário inicial" ngModel required>
+                </div>
+                <div class="col">
+                  <input type="datetime-local" class="form-control" name="finalReserva" placeholder="Horário final" ngModel required>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="form-group">
+                <label>Senha para acesso</label>
+                <input type="text" class="form-control" name="senhaReserva" placeholder="Nome que aparecerá na tela de reservas" ngModel required>
+              </div>
+            </div>
+            <br>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+
+          </form>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h1 class="text-center">Calendário de Reservas</h1>
+      <app-calendario></app-calendario>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #novaReserva>
+  <div class="card">
+    <h4 class="card-header">Nova reserva</h4>
+    <br>
+
+    <div class="card-body">
+
+      <form #novaReserva = "ngForm" (ngSubmit)="registrarReserva(novaReserva)">
+
+        <div class="form-group">
+          <label>Título da Reserva</label>
+          <input type="text" class="form-control" name="tituloReserva" placeholder="Nome que aparecerá na tela de reservas" ngModel required>
+        </div>
+        <br>
+
+        <div class="form-group">
+        </div>
+          <label>Horário da Reserva</label>
+          <input type="datetime" class="form-control" name="inicioReserva" placeholder="Horário inicial" ngModel required>
+          <input type="datetime" class="form-control" name="finalReserva" placeholder="Horário final" ngModel required>
+
+        <br>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+</ng-template>
+

@@ -1,0 +1,41 @@
+@import "~bootstrap";
+
+.container-moises {
+  @extend .container;
+}
+
+.btn-moises{
+  @extend .btn-primary;
+  background-color: #BF2431;
+  border-color: #BF2431;
+
+}
+
+.btn:enabled{
+  @extend .btn;
+  background-color: #017a01;
+  border-color: #017a01;
+  color: aliceblue;
+}
+.btn:disabled{
+  @extend .btn;
+  background-color: #017a01;
+  border-color: #017a01;
+  color: aliceblue;
+}
+
+.card {
+  @extend .card;
+  .card-header {
+    @extend .card-header;
+    background-color: #03460c;
+    color: aliceblue
+
+  }
+}
+div {
+  .row {
+    @extend .row;
+    padding: 1%;
+  }
+}

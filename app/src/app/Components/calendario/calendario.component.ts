@@ -19,7 +19,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; // needs additional webpack c
 
 
 import { Component } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { Calendar, CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import timeGridPlugin from '@fullcalendar/timegrid';
 import ptLocale from '@fullcalendar/core/locales/pt';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
@@ -28,16 +28,19 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
-  styleUrls: ['./calendario.component.scss']
+  styleUrls: ['./calendario.component.css']
 })
 export class CalendarioComponent {
+
+  constructor() { const name = Calendar.name; }
 
   calendarOptions: CalendarOptions = {
     locales: [ ptLocale],
     locale: 'pt',
     plugins: [ timeGridPlugin, bootstrap5Plugin ],
     initialView: 'timeGridWeek',
-
+    nowIndicator: true,
+    themeSystem: '',
     events: [
       {
 
@@ -45,7 +48,6 @@ export class CalendarioComponent {
         start: '2022-05-28 18:30',
         end:'2022-05-28 19:45',
         color: "red",
-
       },
       {
 
