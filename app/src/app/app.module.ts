@@ -1,3 +1,5 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReservasService } from './Service/Reservas/reservas.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -46,7 +48,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     FullCalendarModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [],

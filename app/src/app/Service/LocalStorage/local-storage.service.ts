@@ -19,7 +19,7 @@ export class LocalStorageService {
 
     let aux = JSON.parse(this.acesso)
 
-    return aux[0].apiKey
+    return aux
   }
 
   getNivelDeAcesso(){

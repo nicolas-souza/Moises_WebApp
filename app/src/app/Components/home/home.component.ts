@@ -1,3 +1,5 @@
+import { LocalStorageService } from './../../Service/LocalStorage/local-storage.service';
+import { ReservasService } from './../../Service/Reservas/reservas.service';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -10,14 +12,35 @@ export class HomeComponent implements OnInit {
 
   collapseReserva = true;
 
-  constructor() { }
+  reservas = new Array();
+
+  flag = false;
+
+  constructor(
+    private reservaService: ReservasService,
+    private LocalStorageService: LocalStorageService,
+  ) { }
 
   ngOnInit(): void {
+    this.getReservas()
+    console.log(this.LocalStorageService.getApiKey())
   }
 
   registrarReserva(form: any){
 
   }
+
+  getReservas (){
+
+    this.reservaService.getReservas().subscribe(
+                                                data => {this.reservas = data;},
+                                                erro => {},
+                                                () => {this.flag = true}
+                                                );
+
+  }
+
+
 
 
 

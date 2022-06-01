@@ -54,7 +54,9 @@
   <div class="row">
     <div class="col-8">
       <h1 class="text-center">Calendário de Reservas</h1>
-      <app-calendario></app-calendario>
+      <span *ngIf="flag">
+        <app-calendario [reservas]="reservas"></app-calendario>
+      </span>
     </div>
   </div>
 </div>

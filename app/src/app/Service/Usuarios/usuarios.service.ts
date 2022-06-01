@@ -8,7 +8,7 @@ import { LocalStorageService } from '../LocalStorage/local-storage.service';
   providedIn: 'root'
 })
 export class UsuariosService {
-  url= ""
+  url= "https://localhost:7180/api/Usuarios/"
 
   constructor(
     private httpClient : HttpClient,

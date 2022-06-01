@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class ReservasService {
 
-  url = "/";
+  url = "https://localhost:7180/api/Reservas";
 
   constructor(
     private httpClient : HttpClient,
@@ -17,7 +17,7 @@ export class ReservasService {
   ) { }
 
   getReservas(){
-    return this.httpClient.get<Reserva[]>(this.url+this.lS.getApiKey())
+    return this.httpClient.get<Reserva[]>(this.url)
   }
 
   getReservasUsuario(){

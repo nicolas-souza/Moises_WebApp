@@ -1,3 +1,4 @@
+import { Injectable, Input, OnInit } from '@angular/core';
 // import { Component, OnInit } from '@angular/core';
 
 // @Component({
@@ -23,16 +24,32 @@ import { Calendar, CalendarOptions } from '@fullcalendar/angular'; // useful for
 import timeGridPlugin from '@fullcalendar/timegrid';
 import ptLocale from '@fullcalendar/core/locales/pt';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import { ReservasService } from 'src/app/Service/Reservas/reservas.service';
+import { Evento } from 'src/app/Model/FullCalendar/Evento.model';
+import { Reserva } from 'src/app/Model/Reservas/Reserva.model';
+
 
 
 @Component({
+
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.css']
-})
-export class CalendarioComponent {
 
-  constructor() { const name = Calendar.name; }
+})
+
+export class CalendarioComponent implements OnInit{
+
+
+  constructor(private reservaService: ReservasService) { const name = Calendar.name; }
+
+
+  @Input() reservas = new Array();
+
+  eventos = this.eventoCalendario(this.reservas);
+
+
+
 
   calendarOptions: CalendarOptions = {
     locales: [ ptLocale],
@@ -41,23 +58,8 @@ export class CalendarioComponent {
     initialView: 'timeGridWeek',
     nowIndicator: true,
     themeSystem: '',
-    events: [
-      {
 
-        title: 'event 1',
-        start: '2022-05-28 18:30',
-        end:'2022-05-28 19:45',
-        color: "red",
-      },
-      {
-
-        title: 'evento',
-        start: '2022-05-27 09:30',
-        end:'2022-05-27 10:45',
-        backgroundColor:'blue',
-      },
-
-    ],
+    events: this.eventos,
 
     titleFormat: {
       month: 'long',
@@ -78,5 +80,34 @@ export class CalendarioComponent {
     },
 
   };
+
+  ngOnInit(): void {
+
+    this.calendarOptions.events = this.eventoCalendario(this.reservas)
+
+  }
+
+
+
+  eventoCalendario(reservas: Reserva[]){
+
+    let lstEventos = new Array();
+
+    for (let index = 0; index < reservas.length; index++) {
+
+     const element = reservas[index];
+
+     let evento = new Evento(element);
+
+     lstEventos.push(evento)
+
+    }
+
+    return (lstEventos);
+
+
+   }
+
+
 
 }

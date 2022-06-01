@@ -8,13 +8,11 @@ import { Acesso } from 'src/app/Model/Auth/Acesso.model';
 })
 export class AuthService {
 
-  url = ""
+  url = "https://localhost:7180/api/Auth/"
 
   constructor(private httpClient : HttpClient) { }
 
-  public login(email: string, senha: string){
-
-    let objApi = new Login(email, senha)
+  public login(objApi: Login){
 
     return this.httpClient.post<Acesso>(this.url, objApi);
 
