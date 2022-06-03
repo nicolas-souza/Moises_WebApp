@@ -38,13 +38,13 @@
             <div class="row">
               <div class="form-group">
                 <label>Senha para acesso</label>
-                <input type="password" class="form-control" name="senhaReserva" placeholder="Nome que aparecerá na tela de reservas" ngModel required>
+                <input type="password" class="form-control" name="senhaReserva" placeholder="Senha de acesso" ngModel required>
               </div>
             </div>
             <br>
 
             <div *ngIf="erro">
-              <p class="text-alert">Erro ao adicionar reserva, confira os dados antes de tentar novamente</p>
+              <p class="text-alert"><small>Erro ao adicionar reserva, confira os dados antes de tentar novamente</small></p>
             </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
