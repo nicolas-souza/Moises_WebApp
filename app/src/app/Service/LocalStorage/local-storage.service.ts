@@ -1,5 +1,6 @@
 import { Acesso } from './../../Model/Auth/Acesso.model';
 import { Injectable } from '@angular/core';
+import { ignoreElements } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,21 @@ export class LocalStorageService {
     localStorage.setItem('acesso', JSON.stringify(acesso))
   }
 
-  getApiKey(){
+  getAcesso(){
     this.acesso = localStorage.getItem('acesso')
 
     let aux = JSON.parse(this.acesso)
 
     return aux
+
+  }
+
+  getApiKey(){
+    this.acesso = localStorage.getItem('acesso')
+
+    let aux = JSON.parse(this.acesso)
+
+    return aux.apiKey
   }
 
   getNivelDeAcesso(){
@@ -28,7 +38,8 @@ export class LocalStorageService {
 
     let aux = JSON.parse(this.acesso)
 
-    return aux[0].nivelDeAcesso
+    return aux.nivelDeAcesso
+
   }
 
   getAuth(){
@@ -38,13 +49,17 @@ export class LocalStorageService {
     if(this.acesso == null){
       return false;
     }
+
     return true;
   }
 
   getAuthNivelDeAcesso(){
 
-    if(this.getNivelDeAcesso()=='admin')
-      return true;
+    if(!(this.getNivelDeAcesso() == null)){
+      if(this.getNivelDeAcesso()=='admin')
+        return true;
+    }
+
 
     return false;
   }

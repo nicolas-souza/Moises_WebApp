@@ -60,6 +60,7 @@ export class CalendarioComponent implements OnInit{
     themeSystem: '',
 
     events: this.eventos,
+    
 
     titleFormat: {
       month: 'long',

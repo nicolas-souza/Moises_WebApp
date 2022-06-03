@@ -1,7 +1,7 @@
 
 
 <div clas="container-moises">
-  <div class="row">
+  <div *ngIf="auth" class="row">
     <div class="col">
       <button class="btn btn-moises" (click)="collapseReserva = !collapseReserva"
       [attr.aria-expanded]="!collapseReserva" aria-controls="novaReservaCollapse">Reservar</button>
@@ -38,10 +38,14 @@
             <div class="row">
               <div class="form-group">
                 <label>Senha para acesso</label>
-                <input type="text" class="form-control" name="senhaReserva" placeholder="Nome que aparecerá na tela de reservas" ngModel required>
+                <input type="password" class="form-control" name="senhaReserva" placeholder="Nome que aparecerá na tela de reservas" ngModel required>
               </div>
             </div>
             <br>
+
+            <div *ngIf="erro">
+              <p class="text-alert">Erro ao adicionar reserva, confira os dados antes de tentar novamente</p>
+            </div>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
 

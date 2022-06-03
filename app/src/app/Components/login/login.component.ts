@@ -16,12 +16,17 @@ export class LoginComponent implements OnInit {
 
   acesso: any;
 
+  erro = false;
+
   constructor(private authService: AuthService,
               private lS: LocalStorageService,
               private route: Router
               ) { }
 
   ngOnInit(): void {
+    this.lS.clearStorage();
+    this.erro=false
+
   }
 
   login(form : NgForm){
@@ -31,10 +36,17 @@ export class LoginComponent implements OnInit {
   getAcesso(email: string, senha: string){
     let obj = new Login(email, senha)
 
-    var aux = this.authService.login(obj).subscribe(
-      data => this.acesso = data,
-      err => this.route.navigate(['/login']),
-      ()=>{this.lS.setAcesso(this.acesso); this.route.navigate(['/home'])}
+    this.authService.login(obj).subscribe(
+      data =>{this.acesso = data;
+              this.lS.setAcesso(this.acesso);
+              if(data != null){
+                this.route.navigate(['/home'])
+              } else {
+                this.erro = true;
+              }
+            },
+      err => {this.erro=true;},
+      ()=>{}
     )
   }
 

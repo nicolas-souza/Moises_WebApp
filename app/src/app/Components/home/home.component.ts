@@ -1,3 +1,5 @@
+import { NgForm } from '@angular/forms';
+import { DtoReserva } from './../../Model/Reservas/DtoReserva.model';
 import { LocalStorageService } from './../../Service/LocalStorage/local-storage.service';
 import { ReservasService } from './../../Service/Reservas/reservas.service';
 
@@ -16,17 +18,43 @@ export class HomeComponent implements OnInit {
 
   flag = false;
 
+  erro = false;
+
+  auth: any;
+
   constructor(
     private reservaService: ReservasService,
-    private LocalStorageService: LocalStorageService,
+    private lS: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
+    this.auth = this.lS.getAuth();
+    this.erro = false;
     this.getReservas()
-    console.log(this.LocalStorageService.getApiKey())
+
   }
 
-  registrarReserva(form: any){
+  registrarReserva(form: NgForm){
+
+    let obj = new DtoReserva()
+      obj.tituloReserva = form.value.tituloReserva
+      obj.senhaReserva = form.value.senhaReserva
+      obj.fimReserva = form.value.finalReserva
+      obj.inicioReserva = form.value.inicioReserva
+
+      if((obj.fimReserva > obj.inicioReserva)&&(  obj.tituloReserva != "" && obj.senhaReserva != ""))
+      {
+        this.reservaService.postNovaReserva(obj).subscribe(
+          next => {this.ngOnInit()},
+          err => {this.erro = true},
+          () => { this.collapseReserva = true;
+            form.onReset();})
+            this.flag = false;
+      } else {
+        this.erro = true;
+      }
+
+
 
   }
 
@@ -34,7 +62,7 @@ export class HomeComponent implements OnInit {
 
     this.reservaService.getReservas().subscribe(
                                                 data => {this.reservas = data;},
-                                                erro => {},
+                                                erro => {this.erro = true},
                                                 () => {this.flag = true}
                                                 );
 

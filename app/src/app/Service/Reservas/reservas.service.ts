@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class ReservasService {
 
-  url = "https://localhost:7180/api/Reservas";
+  url = "https://localhost:44320/api/Reservas/";
 
   constructor(
     private httpClient : HttpClient,
@@ -21,16 +21,21 @@ export class ReservasService {
   }
 
   getReservasUsuario(){
-    return this.httpClient.get<Reserva[]>(this.url+"reservasUsuario/"+this.lS.getApiKey())
+    return this.httpClient.get<Reserva[]>(this.url+"reservasUsuario/apiKey="+this.lS.getApiKey())
   }
 
   getReservaId(id: string){
-    return this.httpClient.get<Reserva>(this.url+this.lS.getApiKey()+"/"+id)
+    return this.httpClient.get<Reserva>(this.url+this.lS.getApiKey())
   }
 
-  postNovaReserva (obj: DtoReserva){
-    return this.httpClient.post(this.url+this.lS.getApiKey(), obj)
+  postNovaReserva (obj: any){
+    return this.httpClient.post(this.url+"apiKey?apiKey="+this.lS.getApiKey(),obj)
   }
+
+  deletarReserva(id: any){
+    return this.httpClient.delete(this.url+"apiKey="+this.lS.getApiKey()+"/id="+id)
+  }
+
 
 
 

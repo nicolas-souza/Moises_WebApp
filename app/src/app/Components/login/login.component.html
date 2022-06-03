@@ -1,6 +1,8 @@
 <div class="text-center">
+  <br>
+  <br>
+  <h1 class="h3 mb-3 font-weight-normal">Realize o Login</h1>
   <form class = "container" #formLogin = 'ngForm' (ngSubmit) = 'login(formLogin)'>
-    <h1 class="h3 mb-3 font-weight-normal">Realize o Login</h1>
 
     <div class= "form-group">
       <input type="email" id="inputEmail" name = "inputEmail" class="form-control,w-25 p-3" placeholder="E-mail" required autofocus ngModel>
@@ -10,6 +12,10 @@
     <div class = "form-group">
       <input type="password" id="inputPassword" name = "inputSenha" class="form-control,w-25 p-3" placeholder="Senha" required ngModel>
       <p><small id="emailHelp" class="form-text text-muted">Digite sua senha</small></p>
+    </div>
+
+    <div *ngIf="erro" class="form-control,w-25 p-3">
+      <p class="text-alert">E-mail ou senha incorretos!</p>
     </div>
 
     <button class="btn btn-outline-dark btn-block" type="submit">Login</button>

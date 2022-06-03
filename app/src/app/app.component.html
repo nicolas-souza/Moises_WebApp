@@ -5,13 +5,13 @@
   </div>
 
   <ul class="row nav ">
-    <li class="col nav-item"><a href="#" style="color:#F0DCF2" class="nav-link link-dark px-2" aria-current="page">Reservas da Semana</a></li>
-    <li class="col nav-item"><a href="#" style="color:#F0DCF2" class="nav-link link-dark px-2">Novidades</a></li>
-    <li class="col nav-item"><a href="#" style="color:#F0DCF2" class="nav-link link-dark px-2">Sobre</a></li>
-    <li class="col nav-item"><a href="login" style="color:#F0DCF2" outerLinkActive="active" class="nav-link link-dark px-2">Login</a></li>
+    <li class="col nav-item"><a routerLink="/home" style="color:#F0DCF2" class="nav-link link-dark px-2" aria-current="page">Home</a></li>
+    <li *ngIf="authSimples" class="col nav-item"><a routerLink="/usuario" style="color:#F0DCF2" class="nav-link link-dark px-2">Minhas Reservas</a></li>
+    <li *ngIf="authAdmin" class="col nav-item"><a routerLink="/dashboard" style="color:#F0DCF2" class="nav-link link-dark px-2">Painel do Administrador</a></li>
+    <li class="col nav-item"><a routerLink="/login" style="color:#F0DCF2" outerLinkActive="active" class="nav-link link-dark px-2">Login</a></li>
   </ul>
 </header>
 <br>
 <main>
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)" ></router-outlet>
 </main>
