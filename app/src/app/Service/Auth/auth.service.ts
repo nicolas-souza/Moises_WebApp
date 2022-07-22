@@ -8,7 +8,7 @@ import { Acesso } from 'src/app/Model/Auth/Acesso.model';
 })
 export class AuthService {
 
-  url = "https://localhost:44320/api/Auth"
+  url = "http://localhost:7070/api/Auth"
 
   constructor(private httpClient : HttpClient) { }
 
